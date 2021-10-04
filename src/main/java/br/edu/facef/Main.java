@@ -1,24 +1,18 @@
 package br.edu.facef;
 
-import br.edu.facef.business.Calculos;
 import br.edu.facef.business.ClienteBusiness;
+import br.edu.facef.business.ComissaoBusiness;
 import br.edu.facef.dao.ClienteDao;
+import br.edu.facef.dao.ComissaoDao;
 import br.edu.facef.model.Cliente;
+import br.edu.facef.model.Comissao;
 
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-		System.out.println("hello world!");	
+		// Método de Salvar Cliente
 		
-		Calculos calculos = new Calculos();
-		
-		Integer soma = calculos.somar(2,3);
-		
-		System.out.println("Resultado da soma " + soma);
-	
-		System.out.println("--------- salvar cliente");
+		System.out.println("--------- Salvar Cliente");
 		
 		Cliente novoCliente = new Cliente();
 		
@@ -32,6 +26,22 @@ public class Main {
 		
 		System.out.println("Cliente salvo: " + clienteSalvo);
 		
+		// Método de Salvar Comissão
+		
+		System.out.println("-------- Salvar Comissão");
+		
+		Comissao novaComissao = new Comissao();
+		
+		novaComissao.setIdVendedor(10L);
+		novaComissao.setPorcentagemComissao(2.5F);
+		novaComissao.setTotalVendido(5000F);
+		novaComissao.setValorMeta(8000F);
+		
+		ComissaoBusiness comissaoBusiness = new ComissaoBusiness(new ComissaoDao());
+		
+		Comissao comissaoSalva = comissaoBusiness.salvarComissaoVendedor(novaComissao);
+		
+		System.out.println("Comissao salva: " + comissaoSalva);
 	}
 
 }
