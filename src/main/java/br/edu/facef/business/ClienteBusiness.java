@@ -13,14 +13,13 @@ public class ClienteBusiness {
 	
 	public Cliente salvarCliente(Cliente cliente) {
 		if(cliente == null) {
-			System.out.println("IF clientedddddddd" + cliente);
 			throw new RuntimeException("Cliente é obrigatorio");
 		}
 		
 		if(cliente.getNome() == null) {
 			throw new RuntimeException("Nome é obrigatorio");
 		}
-		
+
 		return this.clienteDao.salvar(cliente);
 	}
 }

@@ -7,10 +7,18 @@ import br.edu.facef.dao.ComissaoDao;
 import br.edu.facef.model.Cliente;
 import br.edu.facef.model.Comissao;
 
+import br.edu.facef.business.CadastrarProdutoBusiness;
+import br.edu.facef.dao.ProdutoDao;
+import br.edu.facef.model.Produto;
+
+import br.edu.facef.business.EfetuarVendaBusiness;
+import br.edu.facef.dao.VendaDao;
+import br.edu.facef.model.Venda;
+
 public class Main {
 
 	public static void main(String[] args) {
-		// Método de Salvar Cliente
+		// Mï¿½todo de Salvar Cliente
 		
 		System.out.println("--------- Salvar Cliente");
 		
@@ -25,10 +33,8 @@ public class Main {
 		Cliente clienteSalvo =  clienteBusiness.salvarCliente(novoCliente);
 		
 		System.out.println("Cliente salvo: " + clienteSalvo);
-		
-		// Método de Salvar Comissão
-		
-		System.out.println("-------- Salvar Comissão");
+				
+		System.out.println("-------- Salvar Comissï¿½o");
 		
 		Comissao novaComissao = new Comissao();
 		
@@ -42,6 +48,34 @@ public class Main {
 		Comissao comissaoSalva = comissaoBusiness.salvarComissaoVendedor(novaComissao);
 		
 		System.out.println("Comissao salva: " + comissaoSalva);
+		
+		System.out.println("--------- cadastrar produto");
+		
+		Produto novoProduto = new Produto();
+		
+		novoProduto.setNome("Geladeira");
+		novoProduto.setCodigo("123");
+		novoProduto.setValor(20.0F);
+		
+		CadastrarProdutoBusiness produtoBusiness = new CadastrarProdutoBusiness(new ProdutoDao());
+		
+		Produto produtoCadastrado =  produtoBusiness.cadastrarProduto(novoProduto);
+		
+		System.out.println("Produto cadastrado: " + produtoCadastrado);
+		
+		System.out.println("--------- efetuar venda");
+		
+		Venda novoVenda = new Venda();
+		
+		novoVenda.setClienteId("111");
+		novoVenda.setProduto("222");
+		novoVenda.setTotal(50.00);
+		
+		EfetuarVendaBusiness efetuarVendaBusiness = new EfetuarVendaBusiness(new VendaDao());
+		
+		Venda vendaEfetuada =  efetuarVendaBusiness.efetuarVenda(novoVenda);
+		
+		System.out.println("Venda efetuada: " + vendaEfetuada);
 	}
 
 }
