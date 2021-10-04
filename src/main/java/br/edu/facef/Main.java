@@ -12,13 +12,16 @@ import br.edu.facef.dao.ProdutoDao;
 import br.edu.facef.model.Produto;
 
 import br.edu.facef.business.EfetuarVendaBusiness;
+import br.edu.facef.business.VendedorBusiness;
 import br.edu.facef.dao.VendaDao;
+import br.edu.facef.dao.VendedorDao;
 import br.edu.facef.model.Venda;
+import br.edu.facef.model.Vendedor;
 
 public class Main {
 
 	public static void main(String[] args) {
-		// Mï¿½todo de Salvar Cliente
+		// Metodo de Salvar Cliente
 		
 		System.out.println("--------- Salvar Cliente");
 		
@@ -33,15 +36,17 @@ public class Main {
 		Cliente clienteSalvo =  clienteBusiness.salvarCliente(novoCliente);
 		
 		System.out.println("Cliente salvo: " + clienteSalvo);
+		
+		// Metodo de Salvar Comissão
 				
-		System.out.println("-------- Salvar Comissï¿½o");
+		System.out.println("-------- Salvar Comissao");
 		
 		Comissao novaComissao = new Comissao();
 		
 		novaComissao.setIdVendedor(10L);
 		novaComissao.setPorcentagemComissao(2.5F);
 		novaComissao.setTotalVendido(5000F);
-		novaComissao.setValorMeta(8000F);
+		novaComissao.setValorMeta(4000F);
 		
 		ComissaoBusiness comissaoBusiness = new ComissaoBusiness(new ComissaoDao());
 		
@@ -49,7 +54,9 @@ public class Main {
 		
 		System.out.println("Comissao salva: " + comissaoSalva);
 		
-		System.out.println("--------- cadastrar produto");
+		// Metodo de Cadastrar Produto
+		
+		System.out.println("--------- Cadastrar produto");
 		
 		Produto novoProduto = new Produto();
 		
@@ -63,7 +70,9 @@ public class Main {
 		
 		System.out.println("Produto cadastrado: " + produtoCadastrado);
 		
-		System.out.println("--------- efetuar venda");
+		// Metodo de Efetuar Venda
+		
+		System.out.println("--------- Efetuar venda");
 		
 		Venda novoVenda = new Venda();
 		
@@ -76,6 +85,22 @@ public class Main {
 		Venda vendaEfetuada =  efetuarVendaBusiness.efetuarVenda(novoVenda);
 		
 		System.out.println("Venda efetuada: " + vendaEfetuada);
+		
+		// Metodo de Salvar Vendedor
+		
+		System.out.println("--------- Salvar Vendedor");
+				
+		Vendedor novoVendedor = new Vendedor();
+				
+		novoVendedor.setNome("Márcio Pereira");
+		novoVendedor.setSalario(2900F);
+		novoVendedor.setCargo("Gerente");
+				
+		VendedorBusiness vendedorBusiness = new VendedorBusiness(new VendedorDao());
+				
+		Vendedor vendedorSalvo =  vendedorBusiness.salvarVendedor(novoVendedor);
+				
+		System.out.println("Vendedor salvo: " + vendedorSalvo);
 	}
 
 }
